@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Exemplo Vue JS</title>
+    <meta charset="utf-8">
+  </head>
+
+  <body>
+    <div id="app">
+        <span v-if="status" v-bind:title="message">
+            Olá, caso o status seja verdadeiro você será informado com uma mensagem de boas-vindas. <b>Basta parar o mouse no texto.</b>
+        </span>
+
+        <span v-else>
+            Olá, caso o status seja verdadeiro você será informado com uma mensagem de boas-vindas. <b>Basta parar o mouse no texto.</b>
+        </span>
+    </div>
+
+	<script src = "https://cdn.jsdelivr.net/npm/vue@2"></script>
+    
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data:{
+                status: true,
+                message: "Seja bem-vindo!"
+            } 
+        })
+    </script>
+    
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Exemplo Vue JS</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+
+    <div id="app">
+        <ol>
+          <b>Lista de livros preferidos</b>
+          <br>
+          <br>
+          <li v-for="livro in livros" :key="livro.message">
+            {{ livro.message }}
+          </li>
+        </ol>
+      </div>
+
+      <hr>
+
+      <div id="app2">
+        <ol>
+          <b>Lista de materiais escolares</b>
+          <br>
+          <br>
+          <li v-for="material in materiais" :key="material.message">
+            {{ material.message }}
+          </li>
+        </ol>
+      </div>
+
+      <hr>
+
+      <div id="app3">
+        <ol>
+          <b>Lista de nome de pessoas</b>
+          <br>
+          <br>
+          <li v-for="pessoa in pessoas" :key="pessoa.message">
+            {{ pessoa.message }}
+          </li>
+        </ol>
+      </div>
+      
+	<script src = "https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+	<script>
+        var appLivros = new Vue({
+        el: "#app",
+        data: {
+            livros: [
+            { message: 'Do mil a milhão' },
+            { message: 'Escola de negócios' },
+            { message: 'O poder do hábito' }
+            ]
+        }
+      })
+
+      var appMateriais = new Vue({
+        el: "#app2",
+        data: {
+            materiais: [
+            { message: 'Notebook' },
+            { message: 'Mouse' },
+            { message: 'Teclado' }
+            ]
+        }
+      })
+
+      var appPessoas = new Vue({
+        el: "#app3",
+        data: {
+            pessoas: [
+            { message: 'Wallison' },
+            { message: 'José' },
+            { message: 'Joaquim' }
+            ]
+        }
+      })
+    </script> 
+    
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Exemplo Vue Js</title>
+  </head>
+  <body>
+    <div id="app">
+      <section id="content">
+        <p>Pessoas aleatórias</p>
+        <ol>
+          <li v-for="pessoa in pessoas">{{ pessoa.text }}</li>
+        </ol>
+
+        <p>Músicas favoritas</p>
+        <ol>
+          <todo-item
+            v-for="item in musicas"
+            v-bind:todo="item"
+            v-bind:key="item.id"
+          ></todo-item>
+        </ol>
+      </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+      Vue.component('todo-item', {
+        props: ['todo'],
+        template: '<li>{{ todo.text }}</li>',
+      });
+
+      var app = new Vue({
+        el: '#app',
+        data: {
+          pessoas: [
+            { text: 'Wallison' },
+            { text: 'Maria' },
+            { text: 'Manoel' },
+          ],
+          musicas: [
+            { text: 'Horas vagas', id: 1 },
+            { text: 'Evidências', id: 2 },
+            { text: 'M4', id: 3 },
+          ],
+        },
+      });
+    </script>
+  </body>
+</html>

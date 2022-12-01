@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Exemplo Vue Js</title>
+  </head>
+  <body>
+    <div id="app">
+        <section>
+            <p>Escolha uma pessoa para visualizar</p>
+            <div class="form-check">
+              <input type="radio" v-model="pessoas" value="MarkZuckerberg">
+              <label>Mark Zuckerberg</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" v-model="pessoas" value="ElonMusk">
+              <label>Elon Musk</label>
+          </section>
+      <img v-if="pessoas === 'MarkZuckerberg'" v-bind:src="MarkZuckerbergImagem" width="500" />
+      <img v-else v-bind:src="ElonMuskImagem" width="370"/>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          pessoas: 'MarkZuckerberg',
+          MarkZuckerbergImagem  : 'https://observer.com/wp-content/uploads/sites/2/2020/01/gettyimages-1178141963.jpg?quality=80&strip',
+          ElonMuskImagem: 'https://techstory.in/wp-content/uploads/2021/06/Elon-Musk-5-Things-to-Know-Ahead-His-SNL-Hosting-Debut-004.jpg',
+        },
+        
+      });
+    </script>
+  </body>
+</html>

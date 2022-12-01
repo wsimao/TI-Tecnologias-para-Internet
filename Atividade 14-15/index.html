@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Exemplo Vue Js</title>
+    <link rel="stylesheet" href="syle.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+        <div>
+          <div>
+            <h1>Localize o endereço desejado</h1>
+          </div>
+          <div>
+            <label class="form__label" for="">CEP</label>
+            <input class="form__input" v-model="cep" placeholder="Digite seu CEP"
+              type="text" maxlength="8"
+              class="form-control">
+          </div>
+          <div v-if="response !== null" class="form">
+            <div v-if="index !== 'cep'"
+               v-for="(value, index) in response" :key="index">
+              <label class="form__label"f for="">{{index.toUpperCase()}}</label>
+              <input
+                class="form__input"
+                class="form-control"
+                :placeholder="index"
+                v-model="response[index]"
+                type="text"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data() {
+          return {
+            cep: '',
+            response: null,
+            baseUrl: 'https://viacep.com.br/ws/'
+          };
+        },
+        methods: {
+        getCEP () {
+          const url = `${this.baseUrl}${this.cep}/json/`
+          axios.get(url).then(resp => {
+            const data = resp.data
+            if (!data.erro) {
+              this.response = data
+            } else {
+              alert('CEP não localizado na base de dados.')
+              this.cep = null
+            }
+          }).catch(error => {
+            console.error(error)
+          })
+        }
+      },
+      watch: {
+        cep: function (novoCep, velhoCep) {
+          if (novoCep.length === 8) this.getCEP()
+          else this.response = null
+        }
+      }
+    })
+    </script>
+  </body>
+</html>

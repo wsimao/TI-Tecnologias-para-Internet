@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Exemplo Vue Js</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{titulo}}</h1>
+      <ol>
+        <li v-for="frase in frases">
+          {{ frase.text | toLowerCase() | truncate(35) }}
+        </li>
+      </ol>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          titulo: 'Frases aleatórias',
+          frases: [
+            { text: 'O dia pode estar escurecendo, mas seja luz na vida de quem está perto de você.' },
+            { text: 'Tudo o que é seu, encontrará uma maneira de chegar até você!' },
+            { text: 'Dinheiro e santidade, a metade da metade' },
+            { text: 'Aprendi que deveríamos ser gratos a Deus por não nos dar tudo que lhe pedimos.' },
+            { text: 'Quem tem luz própria não morre no escuro.' },
+          ],
+        },
+
+        filters: {
+          toLowerCase(str) {
+            return str.toLowerCase();
+          },
+
+          truncate(str, length) {
+            var output = str;
+            if (output.length > length) {
+              output = str.substring(0, length) + '...';
+            }
+            return output;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

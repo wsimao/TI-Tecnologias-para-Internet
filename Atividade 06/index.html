@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Exemplo Vue Js</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Título: {{title}}</h1>
+      <p><b>Paragráfo: </b> {{paragraph}}</p>
+      <hr>
+
+      <p>Digite o título: <input autofocus v-model="title" placeholder="Digite o título" /></p>
+      <p>Digite o Paragráfo: <input autofocus v-model="paragraph" placeholder="Escreva o paragráfo"/></p>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          title: '',
+          paragraph: ''
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Exemplo Vue Js</title>
+  </head>
+  <body>
+    <div id="app">
+      <section id="content">
+        <p><b>Lembretes 📑</b></p>
+        <ol>
+          <li v-for="lembrete in lembretes">{{ lembrete.text }}</li>
+        </ol>
+
+        <p>O que você precisa lembrar?</p>
+        <form onsubmit="onSubmit(event)">
+          <input autofocus v-model="message" />
+          <button v-on:click="addLembrete" style="color: green;">Adicionar</button>
+        </form>
+      </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          message: '',
+          lembretes: [
+            { text: 'Organizar escritório' },
+          ],
+        },
+        methods: {
+          addLembrete: function () {
+            const message = this.message.trim();
+            if (!message) {
+              return;
+            }
+
+            this.lembretes.push({ text: message });
+            this.message = '';
+          },
+        },
+      });
+
+      function onSubmit(event) {
+        event.preventDefault();
+      }
+    </script>
+  </body>
+</html>

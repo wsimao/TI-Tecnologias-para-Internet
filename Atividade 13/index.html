@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Exemplo Vue Js</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="app">
+        <div id="app">
+            <h1>Preços do Bitcoin</h1>
+            <section v-if="errored">
+              <p>Pedimos desculpas, não estamos conseguindo recuperar as informações no momento. Por favor, tente novamente mais tarde.</p>
+            </section>
+            <section v-else>
+              <div v-if="loading">Carregando...</div>
+          
+              <div
+                v-else
+                v-for="currency in info"
+                class="currency">
+                {{ currency.description }}:
+                <span class="lighten">
+                  <span v-html="currency.symbol"></span>{{ currency.rate_float | currencydecimal }}
+                </span>
+              </div>
+            </section>
+          </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+     new Vue({
+        el: '#app',
+        data () {
+            return {
+            info: null,
+            loading: true,
+            errored: false
+    }
+  },
+    filters: {
+        currencydecimal (value) {
+        return value.toFixed(2)
+    }
+  },
+    mounted () {
+        axios
+        .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+        .then(response => {
+        this.info = response.data.bpi
+      })
+      .catch(error => {
+        console.log(error)
+        this.errored = true
+      })
+      .finally(() => this.loading = false)
+  }
+})
+    </script>
+  </body>
+</html>

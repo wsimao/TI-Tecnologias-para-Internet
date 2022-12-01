@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Exemplo Vue Js</title>
+  </head>
+  <body>
+    <div id="app">
+      <section style="text-align: center;">
+        <h1>{{contar}}</h1>
+        <button type="button" v-on:click="addContagem"> Clique para <b>CONTAR</b></button>
+      </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          contar: 0,
+        },
+
+        methods: {
+            addContagem: function () {
+            ++this.contar;
+          },
+        },
+
+        watch: {
+          contar: function (novaContagem) {
+            console.log(`Contar: ${novaContagem}`);
+
+            if (novaContagem >= 4) {
+              alert('Maior sim');
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
